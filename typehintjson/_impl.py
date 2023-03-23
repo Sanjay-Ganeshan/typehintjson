@@ -27,6 +27,12 @@ def dataclass_to_dictionary(obj: T.Any) -> T.Any:
             f.name: dataclass_to_dictionary(getattr(obj, f.name))
             for f in fields
         }
+
+    if isinstance(obj, list):
+        return [dataclass_to_dictionary(item) for item in obj]
+
+    if isinstance(obj, dict):
+        return {k: dataclass_to_dictionary(obj[k]) for k in obj}
     
     return obj
 
