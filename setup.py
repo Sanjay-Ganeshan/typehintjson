@@ -6,7 +6,7 @@ with open("typehintjson/README.md", "r") as fh:
 
 setuptools.setup(
     name="typehintjson",
-    version="1.0.1",
+    version="1.0.3",
     author="Julie Ganeshan",
     author_email="HeavenlyQueen@outlook.com",
     description="Converts dataclasses / enums to JSON and back using type hints",

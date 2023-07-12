@@ -14,12 +14,15 @@ def filter_dictionary(args_dict: T.Dict[str, T.Any], as_dataclass: T.Any) -> T.D
         k: args_dict[k] for k in args_dict if k in fields
     }
 
-def dataclass_to_dictionary(obj: T.Any) -> T.Any:
+def dataclass_to_dictionary(obj: T.Any, flatten_enums: bool = False) -> T.Any:
     """
     Converts a dataclass to a dictionary
     """
     if isinstance(obj, enum.Enum):
-        return {"name": obj.name, "value": obj.value}
+        if flatten_enums:
+            return obj.value
+        else:
+            return {"name": obj.name, "value": obj.value}
     
     if dataclasses.is_dataclass(obj):
         fields = dataclasses.fields(obj)
